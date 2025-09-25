@@ -1,0 +1,109 @@
+\mode<presentation>
+
+% Requirement
+\RequirePackage{etoolbox}
+\RequirePackage{keyval}
+\RequirePackage{calc}
+\RequirePackage{pgfopts}
+\RequirePackage{tikz}
+% Settings
+\useinnertheme{teamhenkler}
+\useoutertheme{teamhenkler}
+\usecolortheme{teamhenkler}
+
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true]  
+
+\newcommand{\thset}[1]{\pgfkeys{/teamhenkler/.cd,#1}}
+
+\pgfkeys{
+  /teamhenkler/project/.cd,
+  .is choice,
+    ProjectWork/.code = {\projecttype{Project Work}},
+    BachelorThesis/.code = {\projecttype{Bachelor Thesis}},
+    MasterThesis/.code = {\projecttype{Master Thesis}},
+    ResearchThesis/.code = {\projecttype{Research Thesis}}
+    none/.code= {\projecttype{}}
+}
+
+\pgfkeys{
+  /teamhenkler/uni/.cd,
+    .is choice,
+    HSHL/.code={
+          \titlegraphic{
+          \includegraphics[height=8mm]{assets/logo/logo_easy2.png}
+          }
+          \institute{Hochschule Hamm Lippstadt}
+
+        },
+    FhD/.code ={
+        \titlegraphic{\includegraphics[height=8mm]{assets/logo/FH_Dortmund-logo.svg.png}}
+        \institute{}
+    }
+}
+
+\newcommand{\teamhenkler@setdefaults}{
+    \pgfkeys{/teamhenkler/.cd,
+    uni=HSHL
+  }
+}
+
+
+
+
+\teamhenkler@setdefaults
+\ProcessPgfOptions{/teamhenkler}
+
+\makeatletter
+\newcommand{\insertemail}{\@email}
+\def\email#1{\gdef\@email{#1}}
+\def\@email{\@latex@error{No \noexpand\email given}\@ehc}
+\email{}
+
+\newcommand{\thematriculationnumber}{\@matriculationnumber}
+\def\matriculationnumber#1{\gdef\@matriculationnumber{#1}}
+\def\@matriculationnumber{\@latex@error{No \noexpand\matriculationnumber given}\@ehc}
+\matriculationnumber{}
+
+\newcommand{\theprojecttype}{\@projecttype}
+\def\projecttype#1{\gdef\@projecttype{#1}}
+\def\@projecttype{\@latex@error{No \noexpand\projecttype given}\@ehc}
+\projecttype{}
+
+
+\makeatother
+
+
+\newcommand{\makebib}[2][References]{
+  \begingroup
+    \setbeamertemplate{frametitle continuation}{} % Remove Roman numerals
+    \begin{frame}[plain, noframenumbering, allowframebreaks]{#1} % Use #1 for the title
+      \bibliographystyle{ieeetr}
+      \bibliography{#2}
+    \end{frame}
+  \endgroup
+}
+
+\newcommand{\maketoc}[1][Table of Contents]{  % Default value: "Table of Contents"
+    \begin{frame}[plain,noframenumbering]{#1}
+        \tableofcontents
+    \end{frame}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+\usepackage{helvet}  % Load Helvetica font
+\renewcommand{\rmdefault}{phv}  % Set Helvetica as the default font
+\renewcommand{\sfdefault}{phv}  % Set Helvetica for sans-serif
+
+
+
+\renewcommand\footnoterule{}
+\let\oldvline\vline
+\renewcommand{\vline}{\textcolor{details.fg}{\oldvline}}
+
+
+\mode<all>

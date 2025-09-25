@@ -1,0 +1,45 @@
+\documentclass{beamer}
+\usetheme{teamhenkler}
+
+\input{src/general_preamble.tex}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{longtable}
+\usepackage{fancyvrb}
+
+\title{A minimal example}
+\date{\today}
+\author{author}
+\subtitle{Master Thesis}
+\email{luca.brodo@hshl.de}
+
+\thset{uni=HSHL,
+inner/sectionpage=progressbarHSHL,
+outer/footlinestyle=slick, 
+outer/progressbar=frametitlestatic,
+color/background=light
+}
+
+
+
+\begin{document}
+\maketitle
+\maketoc
+\input{src/example0.tex}
+\input{src/example1.tex}
+\input{src/example2.tex}
+
+
+\section[Example3]{Further examples}
+\input{src/bullets}
+\input{src/split}
+\input{src/figure}
+\input{src/centered}
+\input{src/monospace}
+\input{src/brackets}
+\input{src/link}
+
+\makebib{src/examplebib}
+
+\end{document}

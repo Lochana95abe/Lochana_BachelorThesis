@@ -1,0 +1,445 @@
+\mode<presentation>
+
+\ProvidesPackage{beamerinnerthemeteamhenkler}
+
+\RequirePackage{etoolbox}
+\RequirePackage{keyval}
+\RequirePackage{calc}
+\RequirePackage{pgfopts}
+\RequirePackage{tikz}
+
+\usetikzlibrary{external}
+
+
+\pgfkeys{
+  /teamhenkler/inner/sectionpage/.cd,
+    .is choice,
+    none/.code=\teamhenkler@disablesectionpage,
+    simple/.code={\teamhenkler@enablesectionpage
+                  \setbeamertemplate{section page}[simple]},
+    progressbar/.code={\teamhenkler@enablesectionpage
+                       \setbeamertemplate{section page}[progressbar]},
+    progressbarHSHL/.code={\teamhenkler@enablesectionpage
+                       \setbeamertemplate{section page}[progressbar2]},
+    simpleHSHL/.code={\teamhenkler@enablesectionpage
+    \setbeamertemplate{section page}[simpleHSHL]},
+    staticBarHSHL/.code={\teamhenkler@enablesectionpage
+                       \setbeamertemplate{section page}[staticBarHSHL]},        
+}
+\pgfkeys{
+  /teamhenkler/inner/subsectionpage/.cd,
+    .is choice,
+    none/.code=\teamhenkler@disablesubsectionpage,
+    simple/.code={\teamhenkler@enablesubsectionpage
+                  \setbeamertemplate{section page}[simple]},
+    progressbar/.code={\teamhenkler@enablesubsectionpage
+                       \setbeamertemplate{section page}[progressbar]},
+}
+\defbeamertemplate{section page}{staticBarHSHL}{
+  \usebeamercolor{details}
+\centering
+\begin{minipage}{22em}
+  \raggedleft
+
+  \usebeamerfont{section title}
+
+  \Huge\fontsize{35}{10}\selectfont\textcolor{details.bg}{\thesection.}\\
+  \vspace{0.5cm}
+  \Large
+  \Huge\insertsection\\[-1ex]
+  \vspace{0.1cm}
+  \usebeamertemplate*{No progress in section page}
+  \par
+  \ifx\insertsubsection\@empty\else%
+  \usebeamercolor[fg]{subsection title}%
+  \usebeamerfont{subsection title}%
+  \insertsubsection
+  \fi
+\end{minipage}
+\par
+\vspace{\baselineskip}
+}
+\defbeamertemplate{section page}{simpleHSHL}{
+	\usebeamercolor{details}
+\centering
+\begin{minipage}{22em}
+  \raggedleft
+
+  \usebeamerfont{section title}
+
+  \Huge\fontsize{35}{10}\selectfont\textcolor{details.bg}{\thesection.}\\
+  \vspace{0.5cm}
+  \Large
+  \Huge\insertsection\\[-1ex]
+  \vspace{0.1cm}
+  %\usebeamertemplate*{No progress in section page}
+  \par
+  \ifx\insertsubsection\@empty\else%
+  \usebeamercolor[fg]{subsection title}%
+  \usebeamerfont{subsection title}%
+  \insertsubsection
+  \fi
+\end{minipage}
+\par
+\vspace{\baselineskip}
+}
+
+\defbeamertemplate{section page}{progressbar2}{
+	\usebeamercolor{details}
+	\centering
+	\begin{minipage}{22em}
+		\raggedleft
+
+		\usebeamerfont{section title}
+
+		\Huge\fontsize{35}{10}\selectfont\textcolor{details.bg}{\thesection.}\\
+		\vspace{0.5cm}
+		\Large
+		\Huge\insertsection\\[-1ex]
+		\vspace{0.1cm}
+		\usebeamertemplate*{progress bar in section page}
+		\par
+		\ifx\insertsubsection\@empty\else%
+		\usebeamercolor[fg]{subsection title}%
+		\usebeamerfont{subsection title}%
+		\insertsubsection
+		\fi
+	\end{minipage}
+	\par
+	\vspace{\baselineskip}
+}
+
+\setbeamertemplate{title page}{
+    \begin{minipage}[c][\paperheight]{\textwidth}
+    \centering
+    \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
+		\ifx\insertsubtitle\@empty\vspace{0.5cm}\else\usebeamertemplate*{subtitle}\vspace{-0.2cm}\fi
+    \ifx\theprojecttype\@empty\vspace{0.5cm}\else\usebeamertemplate*{projecttype}\vspace{-0.2cm}\fi
+		\ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
+    \ifx\thematriculationnumber\@empty\else\usebeamertemplate*{thematriculationnumber}\fi
+		\ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
+    \vspace{0.4cm}
+    \ifx\inserttitlegraphic\@empty\else\usebeamertemplate*{title graphic}\fi
+    \vspace{1.6cm}
+		\ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+	\end{minipage}
+}
+
+\def\maketitle{%
+  \ifbeamer@inframe
+    \titlepage
+  \else
+    \frame[plain,noframenumbering]{\titlepage}
+  \fi
+}
+
+
+\def\titlepage{%
+  \usebeamertemplate{title page}
+}
+\setbeamertemplate{title graphic}{
+  \vbox to 0pt {
+    \vspace*{2em}
+    \inserttitlegraphic%
+  }%
+  \nointerlineskip%
+}
+\setbeamertemplate{title}{
+  %\raggedright%
+  \linespread{1.0}%
+  \Huge\textbf{\inserttitle}%
+  \par%
+  \vspace*{0.5em}
+}
+\setbeamertemplate{subtitle}{
+  %\raggedright%
+  \insertsubtitle%
+  \par%
+  \vspace*{0.5em}
+}
+\setbeamertemplate{projecttype}{
+  \vspace*{-0.3em}
+  %\raggedright%
+  \theprojecttype%
+  \par%
+  \vspace*{0.5em}
+}
+\newlength{\teamhenkler@titleseparator@linewidth}
+\setlength{\teamhenkler@titleseparator@linewidth}{0.4pt}
+\setbeamertemplate{title separator}{
+  \tikzexternaldisable%
+  \begin{tikzpicture}
+    \fill[fg] (0,0) rectangle (\textwidth, \teamhenkler@titleseparator@linewidth);
+  \end{tikzpicture}%
+  \tikzexternalenable%
+  \par%
+}
+\setbeamertemplate{author}{
+  \vspace*{2em}
+ 
+  \if\insertemail\empty 
+  \insertauthor%
+  \else 
+  \href{mailto:\insertemail}{ \insertauthor} 
+  \fi
+  \par%
+  \vspace*{0.25em}
+}
+
+
+\setbeamertemplate{thematriculationnumber}{
+  \footnotesize\thematriculationnumber%
+  \par%
+}
+\setbeamertemplate{date}{
+  \insertdate%
+  \par%
+}
+\setbeamertemplate{institute}{
+  \vspace*{3mm}
+  \insertinstitute%
+  \par%
+}
+\defbeamertemplate{section page}{simple}{
+  \begin{center}
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsectionhead\par
+    \ifx\insertsubsectionhead\@empty\else
+      \usebeamercolor[fg]{subsection title}
+      \usebeamerfont{subsection title}
+      \insertsubsectionhead
+    \fi
+  \end{center}
+}
+\defbeamertemplate{section page}{progressbar}{
+  \centering
+  \begin{minipage}{22em}
+    \raggedright
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsectionhead\\[-1ex]
+    \usebeamertemplate*{progress bar in section page}
+    \par
+    \ifx\insertsubsectionhead\@empty\else%
+      \usebeamercolor[fg]{subsection title}%
+      \usebeamerfont{subsection title}%
+      \insertsubsectionhead
+    \fi
+  \end{minipage}
+  \par
+  \vspace{\baselineskip}
+}
+
+
+
+\newcommand{\teamhenkler@disablesectionpage}{
+  \AtBeginSection{
+    % intentionally empty
+  }
+}
+\newcommand{\teamhenkler@enablesectionpage}{
+  \AtBeginSection{
+    \ifbeamer@inframe
+      \sectionpage
+    \else
+      \frame[plain,c,noframenumbering]{\sectionpage}
+    \fi
+  }
+}
+
+\newcommand{\teamhenkler@disablesubsectionpage}{
+  \AtBeginSubsection{
+    % intentionally empty
+  }
+}
+\newcommand{\teamhenkler@enablesubsectionpage}{
+  \AtBeginSubsection{
+    \ifbeamer@inframe
+      \subsectionpage
+    \else
+      \frame[plain,c,noframenumbering]{\subsectionpage}
+    \fi
+  }
+}
+
+\setbeamertemplate{subsection page}{%
+  \usebeamertemplate*{section page}
+}
+
+
+\newlength{\teamhenkler@progressonsectionpage}
+\newlength{\teamhenkler@progressonsectionpage@linewidth}
+\setlength{\teamhenkler@progressonsectionpage@linewidth}{0.4pt}
+\setbeamertemplate{progress bar in section page}{
+  \setlength{\teamhenkler@progressonsectionpage}{%
+    \textwidth * \ratio{\the\numexpr\insertframenumber+1\relax pt}{\inserttotalframenumber pt}%
+  }%
+  \tikzexternaldisable%
+  \usebeamercolor[fg]{progress bar}
+  \begin{tikzpicture}
+    \fill[bg] (0,0) rectangle (\textwidth, \teamhenkler@progressonsectionpage@linewidth);
+    \fill[fg] (0,0) rectangle (\teamhenkler@progressonsectionpage, \teamhenkler@progressonsectionpage@linewidth);
+  \end{tikzpicture}%
+  \tikzexternalenable%
+}
+
+\setbeamertemplate{No progress in section page}{
+  \usebeamercolor[fg]{progress bar in head/foot}
+  \tikzexternaldisable%
+  \begin{tikzpicture}
+    \fill[fg] (0,0) rectangle (\textwidth, \teamhenkler@progressonsectionpage@linewidth);
+  \end{tikzpicture}%
+  \tikzexternalenable%
+}
+
+
+\def\inserttotalframenumber{100}
+\newlength{\teamhenkler@blocksep}
+\newlength{\teamhenkler@blockadjust}
+\setlength{\teamhenkler@blocksep}{0.75ex}
+\setlength{\teamhenkler@blockadjust}{0.25ex}
+\providecommand{\teamhenkler@strut}{%
+  \vphantom{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz()}%
+}
+\newcommand{\teamhenkler@block}[1]{
+  \par\vskip\medskipamount%
+  \setlength{\parskip}{0pt}
+  \ifbeamercolorempty[bg]{block title#1}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}}{%
+  \ifbeamercolorempty[bg]{block title}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}%
+  }%
+  {%
+    \begin{beamercolorbox}[
+      sep=\dimexpr\teamhenkler@blocksep-\teamhenkler@blockadjust\relax,
+      leftskip=\teamhenkler@blockadjust,
+      rightskip=\dimexpr\teamhenkler@blockadjust plus 4em\relax
+    ]{block title#1}%
+  }}%
+      \usebeamerfont*{block title#1}%
+      \teamhenkler@strut%
+      \insertblocktitle%
+      \teamhenkler@strut%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \ifbeamercolorempty[bg]{block body#1}{%
+    \begin{beamercolorbox}[vmode]{block body#1}}{
+  \ifbeamercolorempty[bg]{block body}{%
+    \begin{beamercolorbox}[vmode]{block body#1}%
+  }{%
+    \begin{beamercolorbox}[sep=\teamhenkler@blocksep, vmode]{block body#1}%
+    \vspace{-\teamhenkler@parskip}
+  }}%
+      \usebeamerfont{block body#1}%
+      \setlength{\parskip}{\teamhenkler@parskip}%
+}
+
+
+\setbeamertemplate{block begin}{\teamhenkler@block{}}
+\setbeamertemplate{block alerted begin}{\teamhenkler@block{ alerted}}
+\setbeamertemplate{block example begin}{\teamhenkler@block{ example}}
+\setbeamertemplate{block end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{block alerted end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{block example end}{\end{beamercolorbox}\vspace*{0.2ex}}
+\setbeamertemplate{itemize items}{\guillemetright}
+\setbeamertemplate{caption label separator}{: }
+\setbeamertemplate{caption}[numbered]
+
+
+\setbeamertemplate{footnote}{%
+  \parindent 0em\noindent%
+  \raggedleft
+  \usebeamercolor{footnote}\hbox to 1em{\hfil\tiny\insertfootnotemark} \tiny\insertfootnotetext%
+  \vspace{0.2cm}
+}
+
+\newlength{\teamhenkler@parskip}
+\setlength{\teamhenkler@parskip}{0.5em}
+\setlength{\parskip}{\teamhenkler@parskip}
+\linespread{1.15}
+\define@key{beamerframe}{c}[true]{% centered
+  \beamer@frametopskip=0pt plus 1fill\relax%
+  \beamer@framebottomskip=0pt plus 1fill\relax%
+  \beamer@frametopskipautobreak=0pt plus .4\paperheight\relax%
+  \beamer@framebottomskipautobreak=0pt plus .6\paperheight\relax%
+  \def\beamer@initfirstlineunskip{}%
+}
+
+\providebool{teamhenkler@standout}
+\define@key{beamerframe}{standout}[true]{%
+  \booltrue{teamhenkler@standout}
+  \begingroup
+    \setkeys{beamerframe}{c}
+    \setkeys{beamerframe}{noframenumbering}
+    \ifbeamercolorempty[bg]{palette primary}{
+      \setbeamercolor{background canvas}{
+        use=palette primary,
+        bg=-palette primary.fg
+      }
+    }{
+      \setbeamercolor{background canvas}{
+        use=palette primary,
+        bg=palette primary.bg
+      }
+    }
+    \setbeamercolor{local structure}{
+      fg=palette primary.fg
+    }
+    \usebeamercolor[fg]{palette primary}
+}
+  \pretocmd{\beamer@reseteecodes}{%
+    \ifbool{teamhenkler@standout}{
+      \endgroup
+      \boolfalse{teamhenkler@standout}
+    }{}
+  }{}{}
+  \AtBeginEnvironment{beamer@frameslide}{
+    \ifbool{teamhenkler@standout}{
+      \centering
+      \usebeamerfont{standout}
+    }{}
+  }
+
+\newcommand{\teamhenkler@inner@setdefaults}{
+    \pgfkeys{/teamhenkler/inner/.cd,
+      sectionpage=none,
+      subsectionpage=none
+    }
+  }
+  
+
+
+\ProcessPgfPackageOptions{/teamhenkler/inner}
+\teamhenkler@inner@setdefaults
+
+\providebool{teamhenkler@conclusion}
+\define@key{beamerframe}{conclusion}[true]{%
+  \booltrue{teamhenkler@conclusion}
+  \begingroup
+    \setkeys{beamerframe}{c}
+
+    % Apply the "plain" footline when conclusion is enabled
+    \setbeamertemplate{footline}[plain]
+}
+  \pretocmd{\beamer@reseteecodes}{%
+    \ifbool{teamhenkler@conclusion}{
+      \endgroup
+      \boolfalse{teamhenkler@conclusion}
+    }{}
+  }{}{}
+  \AtBeginEnvironment{beamer@frameslide}{
+    \ifbool{teamhenkler@conclusion}{
+      \centering
+      \usebeamerfont{standout}
+    }{}
+  }
+
+
+
+
+
+
+
+\mode
+<all>
