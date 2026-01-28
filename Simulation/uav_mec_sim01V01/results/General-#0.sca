@@ -1,0 +1,106 @@
+version 3
+run General-0-20260128-09:54:37-2365
+attr configname General
+attr datetime 20260128-09:54:37
+attr datetimef 20260128-095437
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network uav_mec_sim01.Sim01Network
+attr processid 2365
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config *.u1.computeDelay 20ms
+config *.u2.computeDelay 20ms
+config *.e0.planTime 0.2s
+config ned-path src
+config network uav_mec_sim01.Sim01Network
+config sim-time-limit 5s
+config *.u0.taskStartTime 1s
+
+scalar Sim01Network.e0 L_total_observed_s 0.2502
+scalar Sim01Network.e0 L_total_sum_s 0.2502
+scalar Sim01Network.e0 L_link_u0_u1_s 0.085
+scalar Sim01Network.e0 L_comp_u1_s 0.02
+scalar Sim01Network.e0 L_link_u1_u2_s 0.069
+scalar Sim01Network.e0 L_comp_u2_s 0.02
+scalar Sim01Network.e0 L_link_u2_e0_s 0.0562
+scalar Sim01Network.e0 bytes0 1000000
+scalar Sim01Network.e0 bytesFinal 640000
+par Sim01Network.u0.dataOut.channel typename "\"uav_mec_sim01.DataChan\""
+par Sim01Network.u0.dataOut.channel disabled false
+attr mutable ""
+par Sim01Network.u0.dataOut.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim01Network.u0.dataOut.channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par Sim01Network.u0.dataOut.channel ber 0
+attr mutable ""
+par Sim01Network.u0.dataOut.channel per 0
+attr mutable ""
+par Sim01Network.u1.dataOut.channel typename "\"uav_mec_sim01.DataChan\""
+par Sim01Network.u1.dataOut.channel disabled false
+attr mutable ""
+par Sim01Network.u1.dataOut.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim01Network.u1.dataOut.channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par Sim01Network.u1.dataOut.channel ber 0
+attr mutable ""
+par Sim01Network.u1.dataOut.channel per 0
+attr mutable ""
+par Sim01Network.u2.dataOut.channel typename "\"uav_mec_sim01.DataChan\""
+par Sim01Network.u2.dataOut.channel disabled false
+attr mutable ""
+par Sim01Network.u2.dataOut.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim01Network.u2.dataOut.channel datarate 1e+08bps
+attr mutable ""
+attr unit bps
+par Sim01Network.u2.dataOut.channel ber 0
+attr mutable ""
+par Sim01Network.u2.dataOut.channel per 0
+attr mutable ""
+par Sim01Network.e0.ctrlOut[0].channel typename "\"uav_mec_sim01.CtrlChan\""
+par Sim01Network.e0.ctrlOut[0].channel disabled false
+attr mutable ""
+par Sim01Network.e0.ctrlOut[0].channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim01Network.e0.ctrlOut[1].channel typename "\"uav_mec_sim01.CtrlChan\""
+par Sim01Network.e0.ctrlOut[1].channel disabled false
+attr mutable ""
+par Sim01Network.e0.ctrlOut[1].channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim01Network.e0.ctrlOut[2].channel typename "\"uav_mec_sim01.CtrlChan\""
+par Sim01Network.e0.ctrlOut[2].channel disabled false
+attr mutable ""
+par Sim01Network.e0.ctrlOut[2].channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim01Network.u0 typename "\"uav_mec_sim01.CaptureUav\""
+par Sim01Network.u0 taskStartTime 1s
+attr unit s
+par Sim01Network.u1 typename "\"uav_mec_sim01.PeerUav\""
+par Sim01Network.u1 computeDelay 0.02s
+attr unit s
+par Sim01Network.u2 typename "\"uav_mec_sim01.PeerUav\""
+par Sim01Network.u2 computeDelay 0.02s
+attr unit s
+par Sim01Network.e0 typename "\"uav_mec_sim01.EdgeNode\""
+par Sim01Network.e0 planTime 0.2s
+attr unit s
+par Sim01Network typename "\"uav_mec_sim01.Sim01Network\""
+
