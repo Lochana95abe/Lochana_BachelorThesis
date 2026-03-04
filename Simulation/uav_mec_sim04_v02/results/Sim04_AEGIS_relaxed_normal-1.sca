@@ -1,0 +1,1114 @@
+version 3
+run Sim04_AEGIS_relaxed_normal-1-20260304-11:42:08-17438
+attr configname Sim04_AEGIS_relaxed_normal
+attr datetime 20260304-11:42:08
+attr datetimef 20260304-114208
+attr experiment Sim04_AEGIS_relaxed_normal
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network uav_mec_sim04.Sim04Network
+attr processid 17438
+attr repetition 1
+attr replication #1
+attr resultdir results
+attr runnumber 1
+attr seedset 1
+config repeat 10
+config seed-set 1
+config *.e0.policy "\"AEGIS\""
+config *.u1.enableFailures false
+config *.u2.enableFailures false
+config *.e0.enableEdgeOutage false
+config ned-path src
+config network uav_mec_sim04.Sim04Network
+config sim-time-limit 120s
+config output-scalar-file results/Sim04_AEGIS_relaxed_normal-1.sca
+config output-vector-file results/Sim04_AEGIS_relaxed_normal-1.vec
+config cmdenv-express-mode true
+config record-eventlog false
+config *.u0.posX 100m
+config *.u0.posY 100m
+config *.u1.posX 260m
+config *.u1.posY 140m
+config *.u2.posX 260m
+config *.u2.posY 360m
+config *.e0.posX 500m
+config *.e0.posY 250m
+config *.u1.velX 1mps
+config *.u2.velX -1mps
+config *.u0.meanInterArrival 0.5s
+config *.u0.imagesPerTask 5
+config *.u0.deadline 1s
+config *.e0.baseRate 94Mbps
+config *.e0.featureShrinkMid 0.25
+config *.e0.statusPeriod 0.1s
+config *.e0.heartbeatTimeout 0.3s
+config *.u1.statusPeriod 0.1s
+config *.u2.statusPeriod 0.1s
+
+scalar Sim04Network.e0 task_latency_s 0.183383978724
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 4
+scalar Sim04Network.e0 task_predPrimary_s 0.20780339031106
+scalar Sim04Network.e0 t_capStart_s 1
+scalar Sim04Network.e0 t_planRecv_s 1.007
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 1.269802913256
+scalar Sim04Network.e0 t_planRecv_s 1.276802913256
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 4.206165343747
+scalar Sim04Network.e0 t_planRecv_s 4.213165343747
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 4.843227962827
+scalar Sim04Network.e0 t_planRecv_s 4.850227962827
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 6.1914668818
+scalar Sim04Network.e0 t_planRecv_s 6.1984668818
+scalar Sim04Network.e0 task_latency_s 0.230157572147
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 6.191524075611
+scalar Sim04Network.e0 t_planRecv_s 6.2004668818
+scalar Sim04Network.e0 task_latency_s 0.246710664829
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 6.260078365908
+scalar Sim04Network.e0 t_planRecv_s 6.267078365908
+scalar Sim04Network.e0 task_latency_s 0.15181167388
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 6.440084739836
+scalar Sim04Network.e0 t_planRecv_s 6.447084739836
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 9.914641883504
+scalar Sim04Network.e0 t_planRecv_s 9.921641883504
+scalar Sim04Network.e0 task_latency_s 0.150859967345
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 9.993996682117
+scalar Sim04Network.e0 t_planRecv_s 10.000996682117
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 10.128648660955
+scalar Sim04Network.e0 t_planRecv_s 10.135648660955
+scalar Sim04Network.e0 task_latency_s 0.181772829707
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 10.177090597206
+scalar Sim04Network.e0 t_planRecv_s 10.184090597206
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 10.429662102543
+scalar Sim04Network.e0 t_planRecv_s 10.436662102543
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 10.532719419525
+scalar Sim04Network.e0 t_planRecv_s 10.539719419525
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 10.778157998418
+scalar Sim04Network.e0 t_planRecv_s 10.785157998418
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 10.990146237822
+scalar Sim04Network.e0 t_planRecv_s 10.997146237822
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 11.544092910745
+scalar Sim04Network.e0 t_planRecv_s 11.551092910745
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 11.796819176981
+scalar Sim04Network.e0 t_planRecv_s 11.803819176981
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 13.167667184817
+scalar Sim04Network.e0 t_planRecv_s 13.174667184817
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 13.554647069955
+scalar Sim04Network.e0 t_planRecv_s 13.561647069955
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 14.49105890339
+scalar Sim04Network.e0 t_planRecv_s 14.49805890339
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 14.762728592703
+scalar Sim04Network.e0 t_planRecv_s 14.769728592703
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 14.950638189032
+scalar Sim04Network.e0 t_planRecv_s 14.957638189032
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 15.528578044336
+scalar Sim04Network.e0 t_planRecv_s 15.535578044336
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 15.900322889675
+scalar Sim04Network.e0 t_planRecv_s 15.907322889675
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 16.014685092972
+scalar Sim04Network.e0 t_planRecv_s 16.021685092972
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 16.307686825227
+scalar Sim04Network.e0 t_planRecv_s 16.314686825227
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 17.360035473365
+scalar Sim04Network.e0 t_planRecv_s 17.367035473365
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 17.490443398334
+scalar Sim04Network.e0 t_planRecv_s 17.497443398334
+scalar Sim04Network.e0 task_latency_s 0.21632995215
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 17.504328212142
+scalar Sim04Network.e0 t_planRecv_s 17.511328212142
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 17.886557338368
+scalar Sim04Network.e0 t_planRecv_s 17.893557338368
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 18.441597497643
+scalar Sim04Network.e0 t_planRecv_s 18.448597497643
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 19.668080737754
+scalar Sim04Network.e0 t_planRecv_s 19.675080737754
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 19.938126262648
+scalar Sim04Network.e0 t_planRecv_s 19.945126262648
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 20.243637868152
+scalar Sim04Network.e0 t_planRecv_s 20.250637868152
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 20.652641523842
+scalar Sim04Network.e0 t_planRecv_s 20.659641523842
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 20.934314139513
+scalar Sim04Network.e0 t_planRecv_s 20.941314139513
+scalar Sim04Network.e0 task_latency_s 0.154578307122
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 21.009950598349
+scalar Sim04Network.e0 t_planRecv_s 21.016950598349
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 22.409439903991
+scalar Sim04Network.e0 t_planRecv_s 22.416439903991
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 22.519826512433
+scalar Sim04Network.e0 t_planRecv_s 22.526826512433
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 23.273242886929
+scalar Sim04Network.e0 t_planRecv_s 23.280242886929
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 24.079826732559
+scalar Sim04Network.e0 t_planRecv_s 24.086826732559
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 24.709165338147
+scalar Sim04Network.e0 t_planRecv_s 24.716165338147
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 26.43427888179
+scalar Sim04Network.e0 t_planRecv_s 26.44127888179
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 27.245939561379
+scalar Sim04Network.e0 t_planRecv_s 27.252939561379
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 27.433958872586
+scalar Sim04Network.e0 t_planRecv_s 27.440958872586
+scalar Sim04Network.e0 task_latency_s 0.181518146396
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 27.482655492148
+scalar Sim04Network.e0 t_planRecv_s 27.489655492148
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 28.07200724342
+scalar Sim04Network.e0 t_planRecv_s 28.07900724342
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 28.437071095988
+scalar Sim04Network.e0 t_planRecv_s 28.444071095988
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 29.482379557468
+scalar Sim04Network.e0 t_planRecv_s 29.489379557468
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 30.483694796006
+scalar Sim04Network.e0 t_planRecv_s 30.490694796006
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 31.608722730613
+scalar Sim04Network.e0 t_planRecv_s 31.615722730613
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 32.492198339909
+scalar Sim04Network.e0 t_planRecv_s 32.499198339909
+scalar Sim04Network.e0 task_latency_s 0.185775001662
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 32.536638104205
+scalar Sim04Network.e0 t_planRecv_s 32.543638104205
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 33.421451309516
+scalar Sim04Network.e0 t_planRecv_s 33.428451309516
+scalar Sim04Network.e0 task_latency_s 0.21029582638
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 33.441370249094
+scalar Sim04Network.e0 t_planRecv_s 33.448370249094
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 33.600819023335
+scalar Sim04Network.e0 t_planRecv_s 33.607819023335
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 33.693881667814
+scalar Sim04Network.e0 t_planRecv_s 33.700881667814
+scalar Sim04Network.e0 task_latency_s 0.199679456876
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 33.724416976896
+scalar Sim04Network.e0 t_planRecv_s 33.731416976896
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 34.776868469211
+scalar Sim04Network.e0 t_planRecv_s 34.783868469211
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 35.332000484678
+scalar Sim04Network.e0 t_planRecv_s 35.339000484678
+scalar Sim04Network.e0 task_latency_s 0.17845208988
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 35.383763160756
+scalar Sim04Network.e0 t_planRecv_s 35.390763160756
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 35.833314701462
+scalar Sim04Network.e0 t_planRecv_s 35.840314701462
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 36.106634047506
+scalar Sim04Network.e0 t_planRecv_s 36.113634047506
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 36.663477861389
+scalar Sim04Network.e0 t_planRecv_s 36.670477861389
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 38.247207322615
+scalar Sim04Network.e0 t_planRecv_s 38.254207322615
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 38.512541145646
+scalar Sim04Network.e0 t_planRecv_s 38.519541145646
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 38.893431156924
+scalar Sim04Network.e0 t_planRecv_s 38.900431156924
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 39.003474579282
+scalar Sim04Network.e0 t_planRecv_s 39.010474579282
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 39.592102874742
+scalar Sim04Network.e0 t_planRecv_s 39.599102874742
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 39.763087282978
+scalar Sim04Network.e0 t_planRecv_s 39.770087282978
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 39.952632020181
+scalar Sim04Network.e0 t_planRecv_s 39.959632020181
+scalar Sim04Network.e0 task_latency_s 0.15356916378
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 40.029277622359
+scalar Sim04Network.e0 t_planRecv_s 40.036277622359
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 40.60925705652
+scalar Sim04Network.e0 t_planRecv_s 40.61625705652
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 41.373911135864
+scalar Sim04Network.e0 t_planRecv_s 41.380911135864
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 42.273683000363
+scalar Sim04Network.e0 t_planRecv_s 42.280683000363
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 42.539655577591
+scalar Sim04Network.e0 t_planRecv_s 42.546655577591
+scalar Sim04Network.e0 task_latency_s 0.220985976958
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 42.548884366591
+scalar Sim04Network.e0 t_planRecv_s 42.555884366591
+scalar Sim04Network.e0 task_latency_s 0.288708959906
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 42.566268766622
+scalar Sim04Network.e0 t_planRecv_s 42.573268766622
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 43.2597046553
+scalar Sim04Network.e0 t_planRecv_s 43.2667046553
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 43.748827596096
+scalar Sim04Network.e0 t_planRecv_s 43.755827596096
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 45.997482930273
+scalar Sim04Network.e0 t_planRecv_s 46.004482930273
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 46.537823525279
+scalar Sim04Network.e0 t_planRecv_s 46.544823525279
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 47.22731540585
+scalar Sim04Network.e0 t_planRecv_s 47.23431540585
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 47.404579244536
+scalar Sim04Network.e0 t_planRecv_s 47.411579244536
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 47.569139701067
+scalar Sim04Network.e0 t_planRecv_s 47.576139701067
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 47.86455640242
+scalar Sim04Network.e0 t_planRecv_s 47.87155640242
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 48.643167338234
+scalar Sim04Network.e0 t_planRecv_s 48.650167338234
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 48.768761766
+scalar Sim04Network.e0 t_planRecv_s 48.775761766
+scalar Sim04Network.e0 task_latency_s 0.175739059412
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 48.823237472546
+scalar Sim04Network.e0 t_planRecv_s 48.830237472546
+scalar Sim04Network.e0 task_latency_s 0.222749120862
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 48.861334794075
+scalar Sim04Network.e0 t_planRecv_s 48.868334794075
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 49.158341974567
+scalar Sim04Network.e0 t_planRecv_s 49.165341974567
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 49.475063253512
+scalar Sim04Network.e0 t_planRecv_s 49.482063253512
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 50.671293561774
+scalar Sim04Network.e0 t_planRecv_s 50.678293561774
+scalar Sim04Network.e0 task_latency_s 0.179656521613
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 50.721851806119
+scalar Sim04Network.e0 t_planRecv_s 50.728851806119
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 50.895648631876
+scalar Sim04Network.e0 t_planRecv_s 50.902648631876
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 52.064082531835
+scalar Sim04Network.e0 t_planRecv_s 52.071082531835
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 52.233763475793
+scalar Sim04Network.e0 t_planRecv_s 52.240763475793
+scalar Sim04Network.e0 task_latency_s 0.166587499966
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 52.297390741785
+scalar Sim04Network.e0 t_planRecv_s 52.304390741785
+scalar Sim04Network.e0 task_latency_s 0.182047429963
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 52.367038194767
+scalar Sim04Network.e0 t_planRecv_s 52.374038194767
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 52.739047301047
+scalar Sim04Network.e0 t_planRecv_s 52.746047301047
+scalar Sim04Network.e0 task_latency_s 0.22043628843
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 52.748825778575
+scalar Sim04Network.e0 t_planRecv_s 52.755825778575
+scalar Sim04Network.e0 task_latency_s 0.261879955048
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 52.792489494936
+scalar Sim04Network.e0 t_planRecv_s 52.799489494936
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 53.360390455498
+scalar Sim04Network.e0 t_planRecv_s 53.367390455498
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 54.604013152858
+scalar Sim04Network.e0 t_planRecv_s 54.611013152858
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 54.722905832957
+scalar Sim04Network.e0 t_planRecv_s 54.729905832957
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 55.929375862015
+scalar Sim04Network.e0 t_planRecv_s 55.936375862015
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 56.083690266186
+scalar Sim04Network.e0 t_planRecv_s 56.090690266186
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 56.261264115055
+scalar Sim04Network.e0 t_planRecv_s 56.268264115055
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 56.599481089324
+scalar Sim04Network.e0 t_planRecv_s 56.606481089324
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 57.038484014476
+scalar Sim04Network.e0 t_planRecv_s 57.045484014476
+scalar Sim04Network.e0 task_latency_s 0.202795219096
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 57.065903561338
+scalar Sim04Network.e0 t_planRecv_s 57.072903561338
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 57.483157594443
+scalar Sim04Network.e0 t_planRecv_s 57.490157594443
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 57.909953615935
+scalar Sim04Network.e0 t_planRecv_s 57.916953615935
+scalar Sim04Network.e0 task_latency_s 0.145107382979
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 58.385832678544
+scalar Sim04Network.e0 t_planRecv_s 58.392832678544
+scalar Sim04Network.e0 task_latency_s 0.150875976779
+scalar Sim04Network.e0 task_deadline_s 1
+scalar Sim04Network.e0 task_deadline_met 1
+scalar Sim04Network.e0 task_chainType 1
+scalar Sim04Network.e0 task_predPrimary_s 0.20782130847079
+scalar Sim04Network.e0 t_capStart_s 58.465171467723
+scalar Sim04Network.e0 t_planRecv_s 58.472171467723
+par Sim04Network.u0.dataOutU1.channel typename "\"uav_mec_sim04.DataChan\""
+par Sim04Network.u0.dataOutU1.channel disabled false
+attr mutable ""
+par Sim04Network.u0.dataOutU1.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim04Network.u0.dataOutU1.channel datarate 9.4e+07bps
+attr mutable ""
+attr unit bps
+par Sim04Network.u0.dataOutU1.channel ber 0
+attr mutable ""
+par Sim04Network.u0.dataOutU1.channel per 0
+attr mutable ""
+par Sim04Network.u0.dataOutU2.channel typename "\"uav_mec_sim04.DataChan\""
+par Sim04Network.u0.dataOutU2.channel disabled false
+attr mutable ""
+par Sim04Network.u0.dataOutU2.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim04Network.u0.dataOutU2.channel datarate 9.4e+07bps
+attr mutable ""
+attr unit bps
+par Sim04Network.u0.dataOutU2.channel ber 0
+attr mutable ""
+par Sim04Network.u0.dataOutU2.channel per 0
+attr mutable ""
+par Sim04Network.u0.dataOutE0.channel typename "\"uav_mec_sim04.DataChan\""
+par Sim04Network.u0.dataOutE0.channel disabled false
+attr mutable ""
+par Sim04Network.u0.dataOutE0.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim04Network.u0.dataOutE0.channel datarate 9.4e+07bps
+attr mutable ""
+attr unit bps
+par Sim04Network.u0.dataOutE0.channel ber 0
+attr mutable ""
+par Sim04Network.u0.dataOutE0.channel per 0
+attr mutable ""
+par Sim04Network.u1.dataOutPeer.channel typename "\"uav_mec_sim04.DataChan\""
+par Sim04Network.u1.dataOutPeer.channel disabled false
+attr mutable ""
+par Sim04Network.u1.dataOutPeer.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim04Network.u1.dataOutPeer.channel datarate 9.4e+07bps
+attr mutable ""
+attr unit bps
+par Sim04Network.u1.dataOutPeer.channel ber 0
+attr mutable ""
+par Sim04Network.u1.dataOutPeer.channel per 0
+attr mutable ""
+par Sim04Network.u2.dataOutPeer.channel typename "\"uav_mec_sim04.DataChan\""
+par Sim04Network.u2.dataOutPeer.channel disabled false
+attr mutable ""
+par Sim04Network.u2.dataOutPeer.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim04Network.u2.dataOutPeer.channel datarate 9.4e+07bps
+attr mutable ""
+attr unit bps
+par Sim04Network.u2.dataOutPeer.channel ber 0
+attr mutable ""
+par Sim04Network.u2.dataOutPeer.channel per 0
+attr mutable ""
+par Sim04Network.u1.dataOutE0.channel typename "\"uav_mec_sim04.DataChan\""
+par Sim04Network.u1.dataOutE0.channel disabled false
+attr mutable ""
+par Sim04Network.u1.dataOutE0.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim04Network.u1.dataOutE0.channel datarate 9.4e+07bps
+attr mutable ""
+attr unit bps
+par Sim04Network.u1.dataOutE0.channel ber 0
+attr mutable ""
+par Sim04Network.u1.dataOutE0.channel per 0
+attr mutable ""
+par Sim04Network.u2.dataOutE0.channel typename "\"uav_mec_sim04.DataChan\""
+par Sim04Network.u2.dataOutE0.channel disabled false
+attr mutable ""
+par Sim04Network.u2.dataOutE0.channel delay 0.005s
+attr mutable ""
+attr unit s
+par Sim04Network.u2.dataOutE0.channel datarate 9.4e+07bps
+attr mutable ""
+attr unit bps
+par Sim04Network.u2.dataOutE0.channel ber 0
+attr mutable ""
+par Sim04Network.u2.dataOutE0.channel per 0
+attr mutable ""
+par Sim04Network.u0.ctrlOut.channel typename "\"uav_mec_sim04.CtrlChan\""
+par Sim04Network.u0.ctrlOut.channel disabled false
+attr mutable ""
+par Sim04Network.u0.ctrlOut.channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim04Network.u1.ctrlOut.channel typename "\"uav_mec_sim04.CtrlChan\""
+par Sim04Network.u1.ctrlOut.channel disabled false
+attr mutable ""
+par Sim04Network.u1.ctrlOut.channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim04Network.u2.ctrlOut.channel typename "\"uav_mec_sim04.CtrlChan\""
+par Sim04Network.u2.ctrlOut.channel disabled false
+attr mutable ""
+par Sim04Network.u2.ctrlOut.channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim04Network.e0.ctrlOut[0].channel typename "\"uav_mec_sim04.CtrlChan\""
+par Sim04Network.e0.ctrlOut[0].channel disabled false
+attr mutable ""
+par Sim04Network.e0.ctrlOut[0].channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim04Network.e0.ctrlOut[1].channel typename "\"uav_mec_sim04.CtrlChan\""
+par Sim04Network.e0.ctrlOut[1].channel disabled false
+attr mutable ""
+par Sim04Network.e0.ctrlOut[1].channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim04Network.e0.ctrlOut[2].channel typename "\"uav_mec_sim04.CtrlChan\""
+par Sim04Network.e0.ctrlOut[2].channel disabled false
+attr mutable ""
+par Sim04Network.e0.ctrlOut[2].channel delay 0.001s
+attr mutable ""
+attr unit s
+par Sim04Network.u0 typename "\"uav_mec_sim04.CaptureUav4\""
+par Sim04Network.u0 taskStartTime 1s
+attr unit s
+par Sim04Network.u0 meanInterArrival 0.5s
+attr unit s
+par Sim04Network.u0 imagesPerTask 5
+par Sim04Network.u0 bytesPerImage 200000
+par Sim04Network.u0 captureDelay 0.005s
+attr unit s
+par Sim04Network.u0 deadline 1s
+attr unit s
+par Sim04Network.u0 totalStages 6
+par Sim04Network.u0 planReqTimeout 0.03s
+attr unit s
+par Sim04Network.u0 autonomyEnabled true
+par Sim04Network.u0 posX 100m
+attr unit m
+par Sim04Network.u0 posY 100m
+attr unit m
+par Sim04Network.u0 velX 0mps
+attr unit mps
+par Sim04Network.u0 velY 0mps
+attr unit mps
+par Sim04Network.u0 batteryWh 10
+par Sim04Network.u0 eTxWhPerMB 0.0005
+par Sim04Network.u0 eCmpWhPerStage 0.0002
+scalar Sim04Network.u0 u0_batteryWh_final 10
+par Sim04Network.u1 typename "\"uav_mec_sim04.PeerUav4\""
+par Sim04Network.u1 nodeId 1
+par Sim04Network.u1 computePerStage 0.01s
+attr unit s
+par Sim04Network.u1 statusPeriod 0.1s
+attr unit s
+par Sim04Network.u1 heartbeatTimeout 0.3s
+attr unit s
+par Sim04Network.u1 posX 260m
+attr unit m
+par Sim04Network.u1 posY 140m
+attr unit m
+par Sim04Network.u1 velX 1mps
+attr unit mps
+par Sim04Network.u1 velY 0mps
+attr unit mps
+par Sim04Network.u1 enableFailures false
+par Sim04Network.u1 downStart 40s
+attr unit s
+par Sim04Network.u1 downEnd 60s
+attr unit s
+par Sim04Network.u1 batteryWh 10
+par Sim04Network.u1 eTxWhPerMB 0.0005
+par Sim04Network.u1 eCmpWhPerStage 0.0002
+par Sim04Network.u1 lowBatteryWh 1
+scalar Sim04Network.u1 u1_batteryWh_final 9.9988
+par Sim04Network.u2 typename "\"uav_mec_sim04.PeerUav4\""
+par Sim04Network.u2 nodeId 2
+par Sim04Network.u2 computePerStage 0.01s
+attr unit s
+par Sim04Network.u2 statusPeriod 0.1s
+attr unit s
+par Sim04Network.u2 heartbeatTimeout 0.3s
+attr unit s
+par Sim04Network.u2 posX 260m
+attr unit m
+par Sim04Network.u2 posY 360m
+attr unit m
+par Sim04Network.u2 velX -1mps
+attr unit mps
+par Sim04Network.u2 velY 0mps
+attr unit mps
+par Sim04Network.u2 enableFailures false
+par Sim04Network.u2 downStart 40s
+attr unit s
+par Sim04Network.u2 downEnd 60s
+attr unit s
+par Sim04Network.u2 batteryWh 10
+par Sim04Network.u2 eTxWhPerMB 0.0005
+par Sim04Network.u2 eCmpWhPerStage 0.0002
+par Sim04Network.u2 lowBatteryWh 1
+scalar Sim04Network.u2 u2_batteryWh_final 10
+par Sim04Network.e0 typename "\"uav_mec_sim04.EdgeCoord4\""
+par Sim04Network.e0 policy "\"AEGIS\""
+par Sim04Network.e0 plannerDelay 0.002s
+attr unit s
+par Sim04Network.e0 cellSize 250m
+attr unit m
+par Sim04Network.e0 neighborCells 1
+par Sim04Network.e0 guardBand 0.02s
+attr unit s
+par Sim04Network.e0 replanCooldown 0.3s
+attr unit s
+par Sim04Network.e0 hysteresisGain 0.1
+par Sim04Network.e0 baseRate 9.4e+07bps
+attr unit bps
+par Sim04Network.e0 alpha 0.002
+par Sim04Network.e0 baseLoss 0.001
+par Sim04Network.e0 betaLoss 1e-05
+par Sim04Network.e0 featureShrinkMid 0.25
+par Sim04Network.e0 computePerStage 0.008s
+attr unit s
+par Sim04Network.e0 statusPeriod 0.1s
+attr unit s
+par Sim04Network.e0 heartbeatTimeout 0.3s
+attr unit s
+par Sim04Network.e0 enableEdgeOutage false
+par Sim04Network.e0 edgeDownStart 70s
+attr unit s
+par Sim04Network.e0 edgeDownEnd 90s
+attr unit s
+par Sim04Network.e0 posX 500m
+attr unit m
+par Sim04Network.e0 posY 250m
+attr unit m
+par Sim04Network.e0 batteryWh 100
+par Sim04Network.e0 eTxWhPerMB 0.0002
+par Sim04Network.e0 eCmpWhPerStage 0.0001
+scalar Sim04Network.e0 req_total 116
+scalar Sim04Network.e0 done_total 116
+scalar Sim04Network.e0 deadline_met_total 116
+scalar Sim04Network.e0 success_rate 1
+scalar Sim04Network.e0 deadline_satisfaction_rate 1
+scalar Sim04Network.e0 deadline_miss_ratio 0
+scalar Sim04Network.e0 e0_batteryWh_final 99.930999999999
+par Sim04Network typename "\"uav_mec_sim04.Sim04Network\""
+
