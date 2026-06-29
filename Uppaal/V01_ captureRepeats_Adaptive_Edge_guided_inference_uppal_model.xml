@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.  ONLY constants, channels, variables, types
+
+typedef int[0,2] NodeId;
+typedef int[0,2] LinkId;
+
+
+const int NODE_CAPTURE = 0;
+const int NODE_PEER = 1;
+const int NODE_EDGE = 2;
+const int PLAN_T = 80;
+const int CAP_COMP_T = 6;
+const int TX1_T = 258;
+const int PEER_COMP_T = 7;
+const int TX2_T = 128;
+const int EDGE_COMP_T = 82;
+const int TXE_T = 386;
+const int LOCAL_FULL_T = 900;
+const int DEADLINE = 651;
+const int REPLAN_T = 80;
+const int LINK_CP = 0;
+const int LINK_PE = 1;
+const int LINK_CE = 2;
+const int MONITOR_TIMEOUT = DEADLINE;
+
+
+int[0,1] busy_count[3];
+int[0,1] link_busy[3];
+
+broadcast chan start_req;
+broadcast chan plan_ready;
+broadcast chan edge_only_plan;
+broadcast chan local_only_plan;
+broadcast chan seg1_done;
+broadcast chan tx1_done;
+broadcast chan seg2_done;
+broadcast chan tx2_done;
+broadcast chan tx_edge_done;
+broadcast chan edge_done;
+broadcast chan local_done;
+broadcast chan fail_detected;
+broadcast chan reset;
+broadcast chan reroute_plan;
+
+
+
+bool peer_available = true;
+bool edge_available = true;
+bool node_failed[3];
+bool active_plan = false;
+bool active_plan_updated = false;
+bool request_active = false;
+bool allow_peer_failure = false;
+bool allow_link_failure = false;
+bool link_request[3];
+bool link_failed[3];
+</declaration>
+	<template>
+		<name x="5" y="5">Request</name>
+		<declaration>// Place local declarations here.
+clock req_t, plan_t, comp_t, tx_t;
+
+bool req_done = false;
+bool deadline_miss = false;
+bool edge_fallback_used = false;
+bool local_fallback_used = false;
+
+int stage = 0;</declaration>
+		<location id="id0" x="-102" y="323">
+			<name x="-153" y="314">Idle</name>
+		</location>
+		<location id="id1" x="127" y="323">
+			<name x="68" y="340">Segment1</name>
+			<label kind="invariant" x="-25" y="357">comp_t &lt;= CAP_COMP_T</label>
+		</location>
+		<location id="id2" x="357" y="323">
+			<name x="365" y="331">Transfer1</name>
+			<label kind="invariant" x="331" y="348">tx_t &lt;= TX1_T</label>
+		</location>
+		<location id="id3" x="552" y="323">
+			<name x="484" y="331">Segment2</name>
+			<label kind="invariant" x="467" y="348">comp_t &lt;= PEER_COMP_T</label>
+		</location>
+		<location id="id4" x="799" y="323">
+			<name x="765" y="340">Transfer2</name>
+			<label kind="invariant" x="756" y="357">tx_t &lt;= TX2_T</label>
+		</location>
+		<location id="id5" x="1028" y="323">
+			<name x="986" y="331">EdgeFinal</name>
+			<label kind="invariant" x="960" y="348">comp_t &lt;= EDGE_COMP_T</label>
+		</location>
+		<location id="id6" x="1343" y="323">
+			<name x="1351" y="331">Done</name>
+		</location>
+		<location id="id7" x="399" y="569">
+			<name x="416" y="569">LocalFallback</name>
+			<label kind="invariant" x="416" y="586">comp_t &lt;= LOCAL_FULL_T</label>
+		</location>
+		<location id="id8" x="170" y="34">
+			<name x="93" y="-17">WaitingPlan</name>
+			<label kind="invariant" x="51" y="0">plan_t &lt;= PLAN_T</label>
+		</location>
+		<location id="id9" x="493" y="25">
+			<name x="442" y="-25">EdgeFallback</name>
+			<label kind="invariant" x="442" y="-8">tx_t &lt;= TXE_T</label>
+		</location>
+		<location id="id10" x="1105" y="-68">
+			<name x="1054" y="-102">DeadlineMiss</name>
+		</location>
+		<init ref="id0"/>
+		<transition id="id11">
+			<source ref="id3"/>
+			<target ref="id10"/>
+			<label kind="guard" x="824" y="34">req_t &gt; DEADLINE</label>
+			<label kind="assignment" x="824" y="51">deadline_miss=true</label>
+		</transition>
+		<transition id="id12">
+			<source ref="id1"/>
+			<target ref="id10"/>
+			<label kind="guard" x="807" y="-34">req_t &gt; DEADLINE</label>
+			<label kind="assignment" x="807" y="-17">deadline_miss=true</label>
+			<nail x="365" y="178"/>
+		</transition>
+		<transition id="id13">
+			<source ref="id8"/>
+			<target ref="id10"/>
+			<label kind="guard" x="790" y="-93">req_t &gt; DEADLINE</label>
+			<label kind="assignment" x="790" y="-68">deadline_miss=true</label>
+			<nail x="170" y="-68"/>
+		</transition>
+		<transition id="id14">
+			<source ref="id6"/>
+			<target ref="id0"/>
+			<label kind="assignment" x="1028" y="586">req_done=false, 
+stage=0</label>
+			<nail x="1130" y="629"/>
+			<nail x="-59" y="620"/>
+		</transition>
+		<transition id="id15">
+			<source ref="id1"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="314" y="68">fail_detected?</label>
+			<label kind="assignment" x="314" y="85">tx_t=0, 
+edge_fallback_used=true</label>
+		</transition>
+		<transition id="id16">
+			<source ref="id8"/>
+			<target ref="id7"/>
+			<label kind="guard" x="187" y="399">plan_t &gt;= PLAN_T</label>
+			<label kind="synchronisation" x="187" y="416">local_only_plan?</label>
+			<label kind="assignment" x="187" y="433">comp_t=0, 
+local_fallback_used=true</label>
+			<nail x="314" y="484"/>
+		</transition>
+		<transition id="id17">
+			<source ref="id5"/>
+			<target ref="id10"/>
+			<label kind="guard" x="1079" y="34">req_t &gt; DEADLINE</label>
+			<label kind="assignment" x="1079" y="51">deadline_miss=true</label>
+			<nail x="1147" y="-17"/>
+		</transition>
+		<transition id="id18">
+			<source ref="id4"/>
+			<target ref="id10"/>
+			<label kind="guard" x="926" y="93">req_t &gt; DEADLINE</label>
+			<label kind="assignment" x="926" y="110">deadline_miss=true</label>
+			<nail x="874" y="250"/>
+			<nail x="1121" y="-30"/>
+		</transition>
+		<transition id="id19">
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="guard" x="731" y="433">comp_t &gt;= LOCAL_FULL_T</label>
+			<label kind="synchronisation" x="731" y="450">local_done!</label>
+			<label kind="assignment" x="731" y="467">req_done=true, 
+stage=3, 
+local_fallback_used=true</label>
+			<nail x="1054" y="425"/>
+		</transition>
+		<transition id="id20">
+			<source ref="id1"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="178" y="518">fail_detected?</label>
+			<label kind="assignment" x="178" y="543">comp_t=0, 
+local_fallback_used=true</label>
+			<nail x="178" y="535"/>
+		</transition>
+		<transition id="id21">
+			<source ref="id2"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="357" y="391">fail_detected?</label>
+			<label kind="assignment" x="357" y="408">comp_t=0, 
+local_fallback_used=true</label>
+		</transition>
+		<transition id="id22">
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="guard" x="1113" y="263">comp_t &gt;= EDGE_COMP_T</label>
+			<label kind="synchronisation" x="1113" y="280">edge_done!</label>
+			<label kind="assignment" x="1113" y="297">req_done=true, 
+stage=3</label>
+		</transition>
+		<transition id="id23">
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="841" y="289">tx_t &gt;= TX2_T</label>
+			<label kind="synchronisation" x="841" y="306">tx2_done?</label>
+			<label kind="assignment" x="841" y="323">link_request[LINK_CE]=true, 
+edge_fallback_used=true</label>
+		</transition>
+		<transition id="id24">
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="620" y="289">comp_t &gt;= PEER_COMP_T</label>
+			<label kind="synchronisation" x="637" y="306">seg2_done!</label>
+			<label kind="assignment" x="646" y="323">stage=2, 
+tx_t=0</label>
+		</transition>
+		<transition id="id25">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="382" y="272">tx_t &gt;= TX1_T</label>
+			<label kind="synchronisation" x="382" y="289">tx1_done?</label>
+			<label kind="assignment" x="382" y="306">stage=2, link_request[LINK_PE]=true</label>
+		</transition>
+		<transition id="id26">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="170" y="289">comp_t &gt;= CAP_COMP_T</label>
+			<label kind="synchronisation" x="170" y="306">seg1_done!</label>
+			<label kind="assignment" x="170" y="331">stage=1, 
+link_request[LINK_CP]=true</label>
+		</transition>
+		<transition id="id27">
+			<source ref="id9"/>
+			<target ref="id5"/>
+			<label kind="guard" x="535" y="34">tx_t &gt;= TXE_T</label>
+			<label kind="synchronisation" x="544" y="51">tx_edge_done?</label>
+			<label kind="assignment" x="561" y="68">comp_t=0</label>
+		</transition>
+		<transition id="id28">
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="guard" x="238" y="-51">plan_t &gt;= PLAN_T</label>
+			<label kind="synchronisation" x="238" y="-34">edge_only_plan?</label>
+			<label kind="assignment" x="238" y="-17">tx_t=0, 
+edge_fallback_used=true</label>
+		</transition>
+		<transition id="id29">
+			<source ref="id2"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="391" y="178">fail_detected?</label>
+			<label kind="assignment" x="391" y="195">tx_t=0, 
+edge_fallback_used=true</label>
+		</transition>
+		<transition id="id30">
+			<source ref="id8"/>
+			<target ref="id2"/>
+		</transition>
+		<transition id="id31">
+			<source ref="id8"/>
+			<target ref="id1"/>
+			<label kind="guard" x="17" y="136">plan_t &gt;= PLAN_T</label>
+			<label kind="synchronisation" x="59" y="153">plan_ready?</label>
+			<label kind="assignment" x="76" y="170">comp_t=0</label>
+		</transition>
+		<transition id="id32">
+			<source ref="id0"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-93" y="84">start_req?</label>
+			<label kind="assignment" x="-102" y="101">req_t=0, 
+plan_t=0, 
+comp_t=0, 
+tx_t=0, 
+stage=0, 
+req_done=false, 
+deadline_miss=false, 
+edge_fallback_used=false, 
+local_fallback_used=false</label>
+			<nail x="-110" y="93"/>
+		</transition>
+	</template>
+	<template>
+		<name>Coordinator</name>
+		<declaration>clock coord_t;
+clock replan_t;</declaration>
+		<location id="id33" x="-1844" y="-484">
+			<name x="-1895" y="-476">Idle</name>
+		</location>
+		<location id="id34" x="-1504" y="-484">
+			<name x="-1530" y="-518">Planning</name>
+		</location>
+		<location id="id35" x="-1139" y="-484">
+			<name x="-1130" y="-518">PlanReady</name>
+		</location>
+		<location id="id36" x="-1139" y="-221">
+			<name x="-1156" y="-204">FallbackDecision</name>
+		</location>
+		<location id="id37" x="-1402" y="-221">
+			<name x="-1419" y="-204">Replanning</name>
+		</location>
+		<init ref="id33"/>
+		<transition id="id38">
+			<source ref="id35"/>
+			<target ref="id33"/>
+			<label kind="synchronisation" x="-1826" y="-637">local_done?</label>
+			<label kind="assignment" x="-1826" y="-620">request_active=false, 
+active_plan=false</label>
+			<nail x="-1139" y="-620"/>
+			<nail x="-1844" y="-620"/>
+		</transition>
+		<transition id="id39">
+			<source ref="id36"/>
+			<target ref="id35"/>
+			<label kind="guard" x="-1071" y="-331">!peer_available &amp;&amp; !edge_available</label>
+			<label kind="synchronisation" x="-1079" y="-314">local_only_plan!</label>
+			<label kind="assignment" x="-1096" y="-297">active_plan_updated=true</label>
+			<nail x="-1054" y="-357"/>
+		</transition>
+		<transition id="id40">
+			<source ref="id36"/>
+			<target ref="id37"/>
+			<label kind="guard" x="-1317" y="-246">peer_available</label>
+			<label kind="assignment" x="-1317" y="-221">replan_t=0</label>
+		</transition>
+		<transition id="id41">
+			<source ref="id37"/>
+			<target ref="id35"/>
+			<label kind="guard" x="-1411" y="-391">replan_t &gt;= REPLAN_T</label>
+			<label kind="synchronisation" x="-1351" y="-374">plan_ready!</label>
+			<label kind="assignment" x="-1470" y="-357">active_plan_updated=true</label>
+		</transition>
+		<transition id="id42">
+			<source ref="id36"/>
+			<target ref="id35"/>
+			<label kind="guard" x="-1105" y="-450">!peer_available &amp;&amp; edge_available</label>
+			<label kind="synchronisation" x="-1096" y="-433">edge_only_plan!</label>
+			<label kind="assignment" x="-1088" y="-416">active_plan_updated=true</label>
+			<nail x="-1088" y="-408"/>
+		</transition>
+		<transition id="id43">
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="synchronisation" x="-1215" y="-374">fail_detected?</label>
+		</transition>
+		<transition id="id44">
+			<source ref="id35"/>
+			<target ref="id33"/>
+			<label kind="synchronisation" x="-1121" y="-501">edge_done?</label>
+			<label kind="assignment" x="-1121" y="-484">request_active=false, active_plan=false</label>
+			<nail x="-875" y="-484"/>
+			<nail x="-875" y="-170"/>
+			<nail x="-1844" y="-170"/>
+		</transition>
+		<transition id="id45">
+			<source ref="id34"/>
+			<target ref="id35"/>
+			<label kind="guard" x="-1402" y="-510">coord_t &gt;= PLAN_T</label>
+			<label kind="synchronisation" x="-1402" y="-484">plan_ready!</label>
+			<label kind="assignment" x="-1402" y="-467">active_plan=true</label>
+		</transition>
+		<transition id="id46">
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="synchronisation" x="-1776" y="-510">start_req!</label>
+			<label kind="assignment" x="-1776" y="-484">coord_t=0, 
+request_active=true, 
+active_plan=false, 
+active_plan_updated=false</label>
+		</transition>
+	</template>
+	<template>
+		<name>FailoverManager</name>
+		<declaration>int recovery_mode = 0;
+
+
+//0 = no recovery selected
+//1 = reroute to alternative peer
+//2 = edge fallback
+//3 = local completion</declaration>
+		<location id="id47" x="-918" y="-187">
+			<name x="-935" y="-221">Idle</name>
+		</location>
+		<location id="id48" x="-637" y="-187">
+			<name x="-697" y="-221">FailureDetected</name>
+			<label kind="comments" x="-867" y="-153">0 = no recovery selected
+1 = reroute to alternative peer
+2 = edge fallback
+3 = local completion</label>
+		</location>
+		<location id="id49" x="-297" y="-187">
+			<name x="-348" y="-221">TryAlternativePeer</name>
+		</location>
+		<location id="id50" x="59" y="-187">
+			<name x="-34" y="-221">RerouteToPeer</name>
+		</location>
+		<location id="id51" x="-297" y="59">
+			<name x="-280" y="51">TryEdgeFallback</name>
+		</location>
+		<location id="id52" x="-408" y="221">
+			<name x="-527" y="212">EdgeFallback</name>
+		</location>
+		<location id="id53" x="-178" y="221">
+			<name x="-161" y="213">LocalCompletion</name>
+		</location>
+		<location id="id54" x="59" y="357">
+			<name x="-59" y="366">RecoveryIssued</name>
+		</location>
+		<init ref="id47"/>
+		<transition id="id55">
+			<source ref="id52"/>
+			<target ref="id54"/>
+			<nail x="-408" y="357"/>
+		</transition>
+		<transition id="id56">
+			<source ref="id51"/>
+			<target ref="id53"/>
+			<label kind="guard" x="-263" y="93">!edge_available</label>
+			<label kind="synchronisation" x="-238" y="119">local_only_plan!</label>
+			<label kind="assignment" x="-229" y="136">recovery_mode=3</label>
+		</transition>
+		<transition id="id57">
+			<source ref="id53"/>
+			<target ref="id54"/>
+		</transition>
+		<transition id="id58">
+			<source ref="id54"/>
+			<target ref="id47"/>
+			<label kind="assignment" x="-561" y="382">recovery_mode=0</label>
+			<nail x="59" y="408"/>
+			<nail x="-918" y="408"/>
+		</transition>
+		<transition id="id59">
+			<source ref="id51"/>
+			<target ref="id52"/>
+			<label kind="guard" x="-459" y="93">edge_available</label>
+			<label kind="synchronisation" x="-476" y="119">edge_only_plan!</label>
+			<label kind="assignment" x="-484" y="136">recovery_mode=2</label>
+		</transition>
+		<transition id="id60">
+			<source ref="id49"/>
+			<target ref="id51"/>
+			<label kind="guard" x="-297" y="-85">!peer_available</label>
+		</transition>
+		<transition id="id61">
+			<source ref="id50"/>
+			<target ref="id54"/>
+		</transition>
+		<transition id="id62">
+			<source ref="id49"/>
+			<target ref="id50"/>
+			<label kind="guard" x="-187" y="-221">peer_available</label>
+			<label kind="synchronisation" x="-187" y="-204">reroute_plan!</label>
+			<label kind="assignment" x="-187" y="-187">recovery_mode=1</label>
+		</transition>
+		<transition id="id63">
+			<source ref="id48"/>
+			<target ref="id49"/>
+		</transition>
+		<transition id="id64">
+			<source ref="id47"/>
+			<target ref="id48"/>
+			<label kind="synchronisation" x="-875" y="-204">fail_detected?</label>
+			<label kind="assignment" x="-875" y="-187">recovery_mode=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>WorkerNode</name>
+		<parameter>const int id, const int EXEC_T</parameter>
+		<declaration>clock w_t;
+bool failed_here = false;</declaration>
+		<location id="id65" x="-867" y="-204">
+			<name x="-918" y="-212">Idle</name>
+		</location>
+		<location id="id66" x="-459" y="-204">
+			<name x="-450" y="-204">ReceiveTask</name>
+		</location>
+		<location id="id67" x="-246" y="-204">
+			<name x="-340" y="-195">ExecuteTask</name>
+			<label kind="invariant" x="272" y="-221">w_t &lt;= EXEC_T</label>
+		</location>
+		<location id="id68" x="416" y="-204">
+			<name x="433" y="-212">TaskDone</name>
+		</location>
+		<location id="id69" x="-246" y="161">
+			<name x="-297" y="178">ReportFailure</name>
+		</location>
+		<location id="id70" x="-246" y="0">
+			<name x="-340" y="17">FailDetect</name>
+		</location>
+		<init ref="id65"/>
+		<transition id="id71">
+			<source ref="id67"/>
+			<target ref="id68"/>
+			<label kind="guard" x="-110" y="-59">id == NODE_EDGE &amp;&amp; w_t &gt;= EXEC_T</label>
+			<label kind="synchronisation" x="-195" y="-59">edge_done!</label>
+			<label kind="assignment" x="153" y="-59">busy_count[id]=0</label>
+			<label kind="comments" x="-195" y="-34">Edge Computer</label>
+			<nail x="-204" y="-42"/>
+			<nail x="323" y="-42"/>
+		</transition>
+		<transition id="id72">
+			<source ref="id67"/>
+			<target ref="id68"/>
+			<label kind="guard" x="-110" y="-144">id == NODE_PEER &amp;&amp; w_t &gt;= EXEC_T</label>
+			<label kind="synchronisation" x="-194" y="-144">seg2_done!</label>
+			<label kind="assignment" x="153" y="-144">busy_count[id]=0</label>
+			<label kind="comments" x="-204" y="-119">Peer UAV(s)</label>
+			<nail x="-212" y="-127"/>
+			<nail x="340" y="-127"/>
+		</transition>
+		<transition id="id73">
+			<source ref="id65"/>
+			<target ref="id66"/>
+			<label kind="guard" x="-459" y="-416">id == NODE_EDGE</label>
+			<label kind="synchronisation" x="-331" y="-416">tx_edge_done?</label>
+			<label kind="assignment" x="-382" y="-391">w_t=0, busy_count[id]=1</label>
+			<label kind="comments" x="-671" y="-416">Edge Computer (Fallback)</label>
+			<nail x="-680" y="-391"/>
+			<nail x="-382" y="-391"/>
+		</transition>
+		<transition id="id74">
+			<source ref="id68"/>
+			<target ref="id65"/>
+			<nail x="416" y="-459"/>
+			<nail x="-714" y="-450"/>
+		</transition>
+		<transition id="id75">
+			<source ref="id65"/>
+			<target ref="id66"/>
+			<label kind="guard" x="-620" y="-373">id == NODE_EDGE</label>
+			<label kind="synchronisation" x="-620" y="-356">tx2_done?</label>
+			<label kind="assignment" x="-620" y="-339">w_t=0, busy_count[id]=1</label>
+			<label kind="comments" x="-671" y="-314">Edge Computer (Normal)</label>
+			<nail x="-697" y="-340"/>
+			<nail x="-477" y="-339"/>
+		</transition>
+		<transition id="id76">
+			<source ref="id65"/>
+			<target ref="id66"/>
+			<label kind="guard" x="-653" y="-153">id == NODE_PEER</label>
+			<label kind="synchronisation" x="-653" y="-136">tx1_done?</label>
+			<label kind="assignment" x="-653" y="-119">w_t=0, busy_count[id]=1</label>
+			<label kind="comments" x="-756" y="-170">Peer UAV(s)</label>
+			<nail x="-671" y="-119"/>
+			<nail x="-518" y="-119"/>
+		</transition>
+		<transition id="id77">
+			<source ref="id69"/>
+			<target ref="id65"/>
+			<nail x="-714" y="161"/>
+		</transition>
+		<transition id="id78">
+			<source ref="id66"/>
+			<target ref="id67"/>
+			<label kind="assignment" x="-382" y="-229">w_t=0</label>
+		</transition>
+		<transition id="id79">
+			<source ref="id70"/>
+			<target ref="id69"/>
+			<label kind="synchronisation" x="-246" y="63">fail_detected!</label>
+		</transition>
+		<transition id="id80">
+			<source ref="id67"/>
+			<target ref="id70"/>
+			<label kind="guard" x="-680" y="-85">allow_peer_failure &amp;&amp; id == NODE_PEER &amp;&amp; !failed_here</label>
+			<label kind="assignment" x="-706" y="-68">node_failed[id]=true, busy_count[id]=0, failed_here=true</label>
+		</transition>
+		<transition id="id81">
+			<source ref="id67"/>
+			<target ref="id68"/>
+			<label kind="guard" x="-144" y="-221">id == NODE_CAPTURE &amp;&amp; w_t &gt;= EXEC_T</label>
+			<label kind="synchronisation" x="-228" y="-221">seg1_done!</label>
+			<label kind="assignment" x="136" y="-221">busy_count[id]=0</label>
+			<label kind="comments" x="-221" y="-195">Capture UAV</label>
+		</transition>
+		<transition id="id82">
+			<source ref="id65"/>
+			<target ref="id66"/>
+			<label kind="guard" x="-714" y="-221">id == NODE_CAPTURE</label>
+			<label kind="synchronisation" x="-569" y="-221">plan_ready?</label>
+			<label kind="assignment" x="-671" y="-204">w_t=0, busy_count[id]=1</label>
+			<label kind="comments" x="-807" y="-229">Capture UAV</label>
+		</transition>
+	</template>
+	<template>
+		<name>Link</name>
+		<parameter>const int id, const int LINK_T</parameter>
+		<declaration>clock l_t;
+bool failed_here = false;</declaration>
+		<location id="id83" x="-884" y="-170">
+			<name x="-884" y="-204">Idle</name>
+		</location>
+		<location id="id84" x="-408" y="-170">
+			<name x="-442" y="-204">Available</name>
+		</location>
+		<location id="id85" x="25" y="-170">
+			<name x="15" y="-204">Busy</name>
+		</location>
+		<location id="id86" x="425" y="-170">
+			<name x="415" y="-204">Transfer</name>
+			<label kind="invariant" x="306" y="-161">l_t &lt;= LINK_T</label>
+		</location>
+		<location id="id87" x="841" y="-170">
+			<name x="831" y="-204">Completed</name>
+		</location>
+		<location id="id88" x="25" y="68">
+			<name x="-76" y="59">FailDetect</name>
+		</location>
+		<location id="id89" x="25" y="289">
+			<name x="0" y="306">Failed</name>
+		</location>
+		<init ref="id83"/>
+		<transition id="id90">
+			<source ref="id86"/>
+			<target ref="id88"/>
+			<label kind="guard" x="43" y="34">allow_link_failure &amp;&amp; id == LINK_CP &amp;&amp; !failed_here</label>
+			<label kind="assignment" x="43" y="68">link_failed[id]=true, link_busy[id]=0, failed_here=true</label>
+			<nail x="425" y="68"/>
+		</transition>
+		<transition id="id91">
+			<source ref="id87"/>
+			<target ref="id83"/>
+			<label kind="guard" x="-595" y="595">id == LINK_CE</label>
+			<label kind="synchronisation" x="-442" y="595">tx_edge_done!</label>
+			<label kind="assignment" x="-748" y="595">link_busy[id]=0</label>
+			<label kind="comments" x="-1020" y="595">Capture to Edge fallback link</label>
+			<nail x="901" y="-153"/>
+			<nail x="892" y="595"/>
+			<nail x="-986" y="586"/>
+			<nail x="-977" y="-187"/>
+		</transition>
+		<transition id="id92">
+			<source ref="id87"/>
+			<target ref="id83"/>
+			<label kind="guard" x="-629" y="552">id == LINK_PE</label>
+			<label kind="synchronisation" x="-484" y="552">tx2_done!</label>
+			<label kind="assignment" x="-756" y="552">link_busy[id]=0</label>
+			<label kind="comments" x="-918" y="552">Peer to Edge link</label>
+			<nail x="858" y="-144"/>
+			<nail x="858" y="544"/>
+			<nail x="-926" y="544"/>
+			<nail x="-918" y="-161"/>
+		</transition>
+		<transition id="id93">
+			<source ref="id89"/>
+			<target ref="id83"/>
+			<nail x="-612" y="289"/>
+		</transition>
+		<transition id="id94">
+			<source ref="id88"/>
+			<target ref="id89"/>
+			<label kind="synchronisation" x="34" y="170">fail_detected!</label>
+		</transition>
+		<transition id="id95">
+			<source ref="id87"/>
+			<target ref="id83"/>
+			<label kind="guard" x="-646" y="501">id == LINK_CP</label>
+			<label kind="synchronisation" x="-518" y="501">tx1_done!</label>
+			<label kind="assignment" x="-790" y="501">link_busy[id]=0</label>
+			<label kind="comments" x="-875" y="510">Peer link</label>
+			<nail x="841" y="501"/>
+			<nail x="-892" y="501"/>
+		</transition>
+		<transition id="id96">
+			<source ref="id85"/>
+			<target ref="id88"/>
+		</transition>
+		<transition id="id97">
+			<source ref="id86"/>
+			<target ref="id87"/>
+			<label kind="guard" x="586" y="-161">l_t &gt;= LINK_T</label>
+		</transition>
+		<transition id="id98">
+			<source ref="id85"/>
+			<target ref="id86"/>
+			<label kind="assignment" x="178" y="-170">l_t=0</label>
+		</transition>
+		<transition id="id99">
+			<source ref="id84"/>
+			<target ref="id85"/>
+			<label kind="assignment" x="-255" y="-170">l_t=0</label>
+		</transition>
+		<transition id="id100">
+			<source ref="id83"/>
+			<target ref="id84"/>
+			<label kind="guard" x="-833" y="-195">link_request[id] &amp;&amp; !link_failed[id]</label>
+			<label kind="assignment" x="-841" y="-170">link_request[id]=false, link_busy[id]=1</label>
+		</transition>
+	</template>
+	<template>
+		<name>Monitor</name>
+		<declaration>clock monitor_t;
+
+bool monitor_success = false;
+bool monitor_timeout = false;
+bool monitor_failure = false;</declaration>
+		<location id="id101" x="-892" y="-314">
+			<name x="-909" y="-348">Idle</name>
+		</location>
+		<location id="id102" x="-552" y="-314">
+			<name x="-620" y="-348">WaitingForRequest</name>
+		</location>
+		<location id="id103" x="-170" y="-314">
+			<name x="-204" y="-348">InProgress</name>
+			<label kind="invariant" x="-280" y="-365">monitor_t &lt;= MONITOR_TIMEOUT</label>
+		</location>
+		<location id="id104" x="-408" y="-93">
+			<name x="-433" y="-84">Success</name>
+		</location>
+		<location id="id105" x="68" y="-153">
+			<name x="93" y="-161">Timeout</name>
+		</location>
+		<location id="id106" x="68" y="17">
+			<name x="85" y="8">Failure</name>
+		</location>
+		<init ref="id101"/>
+		<transition id="id107">
+			<source ref="id106"/>
+			<target ref="id101"/>
+			<nail x="-952" y="17"/>
+			<nail x="-952" y="-272"/>
+		</transition>
+		<transition id="id108">
+			<source ref="id103"/>
+			<target ref="id104"/>
+			<label kind="synchronisation" x="-323" y="-144">local_done?</label>
+			<label kind="assignment" x="-323" y="-127">monitor_success=true</label>
+			<label kind="comments" x="-314" y="-161">Local fallback completion</label>
+			<nail x="-187" y="-144"/>
+		</transition>
+		<transition id="id109">
+			<source ref="id104"/>
+			<target ref="id101"/>
+			<nail x="-892" y="-93"/>
+		</transition>
+		<transition id="id110">
+			<source ref="id105"/>
+			<target ref="id106"/>
+			<label kind="assignment" x="76" y="-76">monitor_failure=true</label>
+		</transition>
+		<transition id="id111">
+			<source ref="id103"/>
+			<target ref="id105"/>
+			<label kind="guard" x="-93" y="-280">monitor_t &gt;= MONITOR_TIMEOUT</label>
+			<label kind="assignment" x="-68" y="-263">monitor_timeout=true</label>
+		</transition>
+		<transition id="id112">
+			<source ref="id103"/>
+			<target ref="id104"/>
+			<label kind="synchronisation" x="-390" y="-220">edge_done?</label>
+			<label kind="assignment" x="-390" y="-203">monitor_success=true</label>
+			<label kind="comments" x="-314" y="-238">Edge</label>
+		</transition>
+		<transition id="id113">
+			<source ref="id102"/>
+			<target ref="id103"/>
+			<label kind="synchronisation" x="-467" y="-340">plan_ready?</label>
+			<label kind="assignment" x="-518" y="-314">monitor_t=0</label>
+		</transition>
+		<transition id="id114">
+			<source ref="id101"/>
+			<target ref="id102"/>
+			<label kind="synchronisation" x="-807" y="-340">start_req?</label>
+			<label kind="assignment" x="-807" y="-314">monitor_t=0,
+monitor_success=false,
+monitor_timeout=false, 
+monitor_failure=false</label>
+		</transition>
+	</template>
+	<system>// Template instances
+RequestProc = Request();
+CoordinatorProc = Coordinator();
+
+CaptureWorker = WorkerNode(NODE_CAPTURE, CAP_COMP_T);
+PeerWorker = WorkerNode(NODE_PEER, PEER_COMP_T);
+EdgeWorker = WorkerNode(NODE_EDGE, EDGE_COMP_T);
+
+LinkCP = Link(LINK_CP, TX1_T);
+LinkPE = Link(LINK_PE, TX2_T);
+LinkCE = Link(LINK_CE, TXE_T);
+
+MonitorProc = Monitor();
+FailoverManagerProc = FailoverManager();
+
+// System composition
+system RequestProc, CoordinatorProc, CaptureWorker, PeerWorker, EdgeWorker, LinkCP, LinkPE, LinkCE, MonitorProc, FailoverManagerProc;</system>
+	<queries>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+	</queries>
+</nta>
