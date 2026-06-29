@@ -24,7 +24,13 @@
 
 \maketitle
 \begin{abstract}
-	Your Abstract
+\addcontentsline{toc}{chapter}{Abstract}	
+This thesis presents an edge-guided adaptive CNN inference mapping approach for resilient UAV swarm systems. The goal is to design a low latency image inference in an agriculturally based monitoring scenario. UAVs have limited computational, energy, and communication resources. The Existing researches which are focused in the similar fields, already provide baseline concepts for candidate node selection, task scoring, and offloading decisions. This thesis adapts those ideas to a CNN layer partitioning scenario while refining methods to the given agricultural scenario. Furthermore, this study addresses on recovery when communication links degrade, or peer UAVs fail.\\
+
+The proposed method splits a CNN into sequential layer segments and maps them across capture UAVs, peer UAVs, and an edge server based on the ground.  The Edge coordinator provides the main execution plan by considering communication delay, computation time, energy limitations, node availability, and deadline requirements. The methodology furthermore includes monitoring, local override decisions, fail over rerouting, edge fallback, and local fallback during the worst case scenario which is non of the other nodes are not available. These steps have been used to preserve the inference process active under failure events. \\ 
+
+
+The simulation result shows that the normal and the multiple distributed inference can be completed within the deadline and reduce end-to-end latency compared with direct raw image offloading to the edge. The fail over scenario also proved to be successful after a peer UAV failure by rerouting the task to another UAV. Simulations of the fallback scenarios showed that the system can yet continue execution when the initially selected distributed path is not available. Overall, the thesis shows that adaptive CNN partitioning combined with explicit recovery logic can improve both efficiency and resilience in UAV swarm-based edge inference.
 \end{abstract}
 
 \makedeclaration

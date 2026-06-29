@@ -1,1 +1,127 @@
-\chapter{Related Work}\label{ch:related_work}
+\chapter{Related Work} \label{related_work_chapter}
+This chapter provides a detailed explanation of the prior work that informed and inspired the design choices and the designs of the thesis. Twenty two peer reviewed articles were selected through systematic approach, through open access databases including IEEE Xplore, MDPI, ScienceDirect library Search. The approach is designed to address latency and deadline related distributed CNN inference between UAV swarm and the edge node located on the ground. This studies furthermore covers techniques about intermediate feature transfer at the boundaries, link variability because of the mobilities, energy and stability optimizing methods and the failover strategies. The benchmarks based performance evaluation provided backbone to the simulation.
+
+
+\section{Literature Research Approach}
+
+This section explains how the methodology of this thesis was developed. The literature research followed through a structured review of research on collaborative DNN inference, DNN partitioning, UAV-assisted edge computing, UAV swarm computing, wireless communication, and inference benchmarking. The direction of the thesis, scenarios, requirements, and objectives were defined through discussions with the thesis supervisors.  Based on these requirements, the reviewed papers were systematically grouped according to the knowledge they contributed to the thesis. \\
+
+Eight out of 22 studies directly discuss Distributed DNN inference. Which are en et al. 2022, Xu et al. 2023, Mu et al. 2024, Yuan and Li 2025, Zhang et al. 2023, Seo 2025, Yang 2017, and Furutanpey et al. (2023). Seven studies discussed  UAV-assisted edge computing, task offloading, resource allocation, energy optimization, or trajectory optimization.  These studies are Suganya et al. (2024), Chen et al. (2024), Hua et al. (2018), Zhang et al. (2019), Yang et al. (2021), Tang et al. (2022), and Li et al. (2020). The studies Wu et al. (2022) and Demir et al. (2024) discuss UAV swarm architecture. The study Suo et al. (2023) discusses UAV edge-based object detection. Three out of the total studies mainly focused on UAV communication, cellular and connectivity, 5G, LTE, and latency. These are Damigos et al. (2023), Baltaci et al. (2022), and Rochman et al. (2024). Reddi et al. (2020) discuss benchmarking for ML inference.   
+
+
+\begin{table}[htbp]
+	\centering
+	\scriptsize
+	\setlength{\tabcolsep}{4pt}
+	\renewcommand{\arraystretch}{1.18}
+	
+	\begin{tabularx}{\textwidth}{|P{2.4cm}|P{3.0cm}|Y|P{2.4cm}|}
+		\hline
+		\textbf{Author} & \textbf{Related keywords} & \textbf{Relevance to the thesis} & \textbf{Resource type} \\
+		\hline
+		
+		Zhang et al. (2023) &
+		UAV swarm, distributed neural network, task offloading &
+		distributed inference for UAV swarms , local execution, edge offloading, and latency focused inference decisions. &
+		Framework of Distributed inference  \\
+		\hline
+		
+		Mu et al. (2024) &
+		Collaborative inference, DNN partition, feature transfer, latency refinement &
+		CNN splitting, concept of local execution of early layers and intermediate feature offload to the edge to complete inference. &
+		Collaborative inference framework \\
+		\hline
+		
+		Yuan and Li (2025) &
+		Distributed inference in heterogeneous edge devices , convolutional partitioning &
+		Distributed CNN workload partitioning across heterogeneous edge devices. Consideration of latency and energy. &
+		Algorithm of distributed inference  \\
+		\hline
+		
+		Kang et al. (2017) &
+		Layer partitioning, mobile edge, latency, energy &
+		Provides foundational support for DNN partitioning between weaker device and a stronger server. &
+		Runtime scheduling system \\
+		\hline
+		
+		Furutanpey et al. (2023) &
+		Split computing, feature compression &
+		Reducing of transferred feature data. This is important for latency sensitive edge inference. &
+		Feature compression method \\
+		\hline
+		
+		Chen et al. (2024) &
+		UAV edge computing, mobility, deadlines, resource allocation &
+		Adaptive candidate node selection under deadlines of mobility, limited coverage, resource constraints, and task. &
+		Task offloading algorithm \\
+		\hline
+		
+		Wu et al. (2022) &
+		UAV swarm; U2U communication, fault tolerance, edge computing &
+		Swarm architecture and general UAV swarm fault tolerance.   &
+		Survey and architecture paper \\
+		\hline
+		
+		Ren et al. (2022) &
+		Collaborative DNN inference, edge intelligence, failure resilient DNN &
+		Failure resilient distributed DNNs. DEscribed as abstract level, rather than UAV CNN runtime recovery. &
+		Survey and taxonomy paper \\
+		\hline
+		
+	\end{tabularx}
+	
+	\caption{Key reviewed studies and their relevance to the thesis.}
+	\label{tab:focused_literature_methodology}
+\end{table}
+
+Table~\ref{tab:focused_literature_methodology} provides a summarized review of the resources that are mostly contributed throughout the development of the proposed approach.
+
+
+\section{Methodological Integration of Reviewed Literature }\label{movement}
+The initial idea of sharing the workload across UAVs is motivated by integrating the UAVs into an MEC system. Latest researches emphasize that MEC is a prominent solution for time-sensitive tasks executing on resource-constrained UAVs. By offloading tasks to the nearby edge servers, which serve as base stations or Wi-Fi access points, can reduce the onboard computation delay and energy constraints. In MEC systems, Onboard energy is a limiting factor and the targeted system should be energy efficient with resource allocation decisions, the path planning, which works against the channel quality\cite{EnergyEffUAV}. The mobility-based approach is further strengthened by formulating the problem as mobility and stochastic task arrivals as an online multi-stage optimization. Then solve it through per-slot resource allocation and UAV movement control\cite{DynamicTrajectory2021Yang}.\\
+
+The next key point to consider is the methodology of running a collaborative DNN inference in an MEC system. In this thesis, DNN inference is considered as a multi-node and edge intelligence problem. 
+The study by Mu et al. (2024) provided a solution that involves only a single external node and an edge node. This solution should be extended to enable multi-nodes execution to align to the requirements of this thesis.\\
+
+The prominent challenges while designing such a system are the decisions of model partitioning, heterogeneity of the edge and UAVs, latency, energy, and fault recovery. Following this, the CNN model is split into multiple segments and deployed across suitable UAV(s) and edge node according to the chosen partition granularity, deployment location, system constraints, optimization objective, and optimization algorithm \cite{first_ref}\cite{second_ref}. Yuan and Li (2025) provided a method to find the optimal partition choice which where to split the model, model compression and the feature tenser compression. By obtaining this,improves the accuracy and the speed of the inference model.
+
+Timing plays a crucial role of this system. Because of the dynamic behaviour of the system, the decisions should be taken by considering trajectory of the UAV against the time to handle time-dependent tasks and task arrives. The mobility aware offloading decisions can be also described as in terms of deadline.
+For collaborative and DNN inference,the general practice to calculate end-to-end latency is to sum up total processing and transmitting time. Additionally, The candidate offloading nodes should be reachable within the deadline. The task completing time can be expressed as follows,
+
+\begin{equation}
+	T_{\text{total}} = T_{\text{up}} + T_{\text{inter}} + T_{\text{queue}} + T_{\text{exec}} + T_{\text{down}}
+	\label{eq:total_time}
+\end{equation}
+
+
+Therefore the equation \ref{eq:total_time}, total time is expressed as the sum of, upload time, internode transmission time, waiting time, computation time and the return time\cite{Chen2024Mobility}\cite{Mu2024FineGrain}. Such systems follows measurement based profiling method, in simple terms the system calculates how long it takes to finish the whole model and how long each segment takes to compute and find out which node is faster and find out best partition placement. However, there are some practical shortcomings related to above strategy. These systems have been designed to assume the network connection is perfect;  the system is not designed to count the communication time while planning the work. This assumption is not suitable for UAV based system due to the dynamic behavior\cite{Seo2025DNNPipe}. This approach is not valid for communicating the planning of the target scenario in this thesis.\\
+
+Furthermore, other prior works point out that the necessity of the mobility based planning, stability control and the reliability while executing inference between dynamic nodes. In order to determine a task execute withing the given deadline in feasible manner, it is important to add the operational costs including Container startup time and server availability when the completion time estimating\cite{Chen2024Mobility}. Superior processing power is irrelevant if the node is unavailable, as the task will be added to a queue, which incurring extra waiting time. Hence, it is preferable to offload to an available node.
+
+
+\section{Review of Evaluation Metrics and Benchmarks}
+\label{evo_bench}
+The methodology of the suggested solution will be validated by a simulation rather than a physical UAV testbed. Therefore this section provides the metrics and reference values used later in Chapter 5. The simulation evaluates mainly end-to-end inference latency, deadline feasibility, communication delay, throughput, failover overhead, and energy use. These metrics justify the methodology of the thesis. \\
+
+Benchmarks provided by Reddi et al. (2020) show that the performance of the inference depends not only with one metric, because a dynamic system can behave differently under different latency requirements and arrival patterns. This benchmark is separated into four main sections. They are single-stream, multistream, server, and offline scenarios. Furthermore, while reporting the performance, the system should satisfy the model quality goals which were set prior to the tests\cite{MLPerfInf2020Reddi}. This thesis follows the same principle, yet in a simplified scale. \\
+
+Seo et al. (2025) influences directly for the distributed CNN execution of the simulation design. Provided DNNPipe evaluation measures such as throughput and end-to-end latency after partitioning the model across nodes\cite{Seo2025DNNPipe}. This validates the evaluation approach implemented in this thesis, which computes the overall latency from computation time, feature tensor transfer time, planning delay, and failure overhead. Furthermore, Mu et al. (2024) emphasized that the collaborative inference must be evaluated under different communication rates, because the trade-off of communication and communication majorly depends on the partition point. However, the 4G communication rate of 11.22 Mb/s provided by Mu et al. (2024), proves that the thesis simulation requires a faster 5G link to ensure reliable transfer of tensors and communication \cite{Mu2024FineGrain}. \\
+
+For communication between nodes, especially between UAV and Edge, it is recommended to have 5G class connection. This results in an effective data rate when estimating feature-transfer time in Chapter \ref{Evaluation_chapter} \cite{rochman2024comprehensive}. The 5G communication values which have been used in this thesis are backed up by cellular and network measuring works such as . Baltaci et al. (2022). This study furthermore explains that UAV operations may experience varied latency during the mission. Link degradation, RTT monitoring, and fallback behaviour are causes of latency and should be included in the evaluation\cite{AnalyzingVideoDelivery2022Baltaci}. Additionally, Damigos et al. (2023) mentioned that local 5G edge-cloud architectures have capability of providing a more stable behavior of latency than remote 5G or LTE cloud paths. This enables the use of an edge node as the preferred node to execute the final inference stage\cite{Damigos2023Toward5GEdgeUAV}. \\
+
+Managing intermediate feature tensors, referred to as feature handling overhead, is an important aspect of the thesis simulation. Furutanpey et al. (2023) address this by having the client encode the feature tenser before transferring to the server. The server then decodes them to complete the inference. The system measures time required for the mentioned encoder-side and decoder-side execution time to predict the pipeline latency for compressed feature transfer \cite{FrankenSplit2023Furutanpey}.\\
+
+Although the simulation does not compress the feature tensors. However, according to Furutanpey et al. (2023) this creates extra delay to the pipeline. Hence, this thesis included the feature transfer overhead as a part of the latency model \cite{FrankenSplit2023Furutanpey}. 
+Finally, the energy model designed in the thesis is based on the study of Suo et al. (2024). The study provides an energy-aware UAV edge object-detection model. The computational energy is calculated through \(E_{\text{comp}} = P_{\text{comp}} \cdot t_{\text{comp}}\) \cite{E3UAV2024Suo}.
+
+
+
+
+
+\section{Research Gap}
+\label{Research_Gap}
+
+This chapter provided an overview of existing studies on UAV-assisted edge computing and collaborative DNN inference. These studies mainly address task offloading, DNN partitioning, latency reduction, energy consumption, and load balancing. Furthermore, 
+Several works provided an overview of changing network stability, and the failure of nodes affects collaborative inference. For example, Ren et al. discuss failure-resilient distributed DNN models. There, if a physical node failed, rerouting with an alternative path is suggested. Following the same methodology, if one UAV fails, Wu et al. suggested employing the rest of the swarm of UAVs to continue the pipeline.\\
+
+However, these studies provided general solutions or focused only on distributed DNN systems. A robust UAV swarm, and an edge-based CNN inference pipeline requires a well-defined, concrete runtime recovery policy. Hence, a clear gap can be found in defining the continuation of the CNN inference pipeline when the selected UAV node or communication path becomes unavailable during execution. The reviewed 22 literature resources could not provide a detailed fallback methodology for possible fallback events explained in section \ref{override_actions}. This thesis addresses this gap by providing a detailed set of fallback steps when a failure is triggered while execution.
